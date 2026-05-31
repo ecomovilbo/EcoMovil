@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoMóvil — Registra tu pedido</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon"><i class="ti ti-leaf"></i></div>
+        <div>
+          <div class="logo-name">EcoMóvil</div>
+          <div class="logo-sub">Celulares reacondicionados</div>
+        </div>
+      </div>
+      <div class="header-badge"><i class="ti ti-shield-check"></i> Compra segura</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Envíos a todo Bolivia</p>
+      <h1 class="hero-title">Registra tu pedido</h1>
+      <p class="hero-sub">Completa el formulario y nos comunicamos por WhatsApp en menos de 24 horas para confirmar disponibilidad y coordinar el envío.</p>
+    </section>
+
+    <!-- FORM CARD -->
+    <div class="form-card" id="form-card">
+      <form id="order-form" novalidate>
+
+        <!-- PASO 1: DATOS PERSONALES -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="section-num">1</span>
+            <span class="section-title">Tus datos</span>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="nombre">Nombre completo <span class="req">*</span></label>
+              <input type="text" id="nombre" name="nombre" placeholder="Ej: María López" autocomplete="name" />
+              <span class="err-msg" id="err-nombre"></span>
+            </div>
+            <div class="field-group">
+              <label for="whatsapp">WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+591 7XXXXXXX" autocomplete="tel" />
+              <span class="err-msg" id="err-whatsapp"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PASO 2: DIRECCIÓN -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="section-num">2</span>
+            <span class="section-title">Dirección de entrega</span>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="depto">Departamento <span class="req">*</span></label>
+              <select id="depto" name="depto">
+                <option value="">Selecciona...</option>
+                <option>La Paz</option>
+                <option>Santa Cruz</option>
+                <option>Cochabamba</option>
+                <option>Oruro</option>
+                <option>Potosí</option>
+                <option>Sucre</option>
+                <option>Tarija</option>
+                <option>Beni</option>
+                <option>Pando</option>
+              </select>
+              <span class="err-msg" id="err-depto"></span>
+            </div>
+            <div class="field-group">
+              <label for="ciudad">Ciudad / Municipio <span class="req">*</span></label>
+              <input type="text" id="ciudad" name="ciudad" placeholder="Ej: El Alto" />
+              <span class="err-msg" id="err-ciudad"></span>
+            </div>
+          </div>
+
+          <div class="field-group full">
+            <label for="direccion">Dirección exacta <span class="req">*</span></label>
+            <input type="text" id="direccion" name="direccion" placeholder="Zona, calle, número, referencia..." />
+            <span class="err-msg" id="err-direccion"></span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PASO 3: CELULAR -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="section-num">3</span>
+            <span class="section-title">Elige tu celular</span>
+          </div>
+          <p class="section-hint">Solo se muestran equipos disponibles hoy.</p>
+
+          <div class="phone-grid" id="phone-grid">
+            <!-- Generado por JS desde stock.js -->
+          </div>
+          <span class="err-msg" id="err-modelo"></span>
+
+          <div class="field-group full" style="margin-top:1.25rem">
+            <label>Estado del equipo</label>
+            <div class="tag-group" id="cond-group">
+              <button type="button" class="tag" data-val="Como nuevo" onclick="selectTag('cond-group', this)">Como nuevo</button>
+              <button type="button" class="tag" data-val="Muy bueno" onclick="selectTag('cond-group', this)">Muy bueno</button>
+              <button type="button" class="tag" data-val="Bueno" onclick="selectTag('cond-group', this)">Bueno</button>
+              <button type="button" class="tag" data-val="Sin preferencia" onclick="selectTag('cond-group', this)">Sin preferencia</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PASO 4: PAGO -->
+        <div class="form-section">
+          <div class="section-header">
+            <span class="section-num">4</span>
+            <span class="section-title">Forma de pago</span>
+          </div>
+
+          <div class="pay-grid" id="pay-grid">
+            <div class="pay-card" onclick="selectPay(this, 'Transferencia bancaria')">
+              <i class="ti ti-building-bank"></i>
+              <span>Transferencia</span>
+            </div>
+            <div class="pay-card" onclick="selectPay(this, 'QR / Billetera digital')">
+              <i class="ti ti-qrcode"></i>
+              <span>QR / Billetera</span>
+            </div>
+            <div class="pay-card" onclick="selectPay(this, 'Contra entrega')">
+              <i class="ti ti-truck-delivery"></i>
+              <span>Contra entrega</span>
+            </div>
+            <div class="pay-card" onclick="selectPay(this, 'Pago en cuotas')">
+              <i class="ti ti-calendar-dollar"></i>
+              <span>En cuotas</span>
+            </div>
+          </div>
+          <span class="err-msg" id="err-pago"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- NOTAS -->
+        <div class="form-section">
+          <div class="field-group full">
+            <label for="notas">Notas adicionales <span class="optional">(opcional)</span></label>
+            <textarea id="notas" name="notas" rows="3" placeholder="Color preferido, alguna consulta, instrucciones de entrega..."></textarea>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-area">
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <i class="ti ti-send"></i> Registrar pedido
+          </button>
+          <div class="trust-strip">
+            <span><i class="ti ti-lock"></i> Datos protegidos</span>
+            <span><i class="ti ti-clock"></i> Respuesta en 24h</span>
+            <span><i class="ti ti-refresh"></i> Garantía incluida</span>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- PANTALLA DE ÉXITO -->
+    <div class="success-card" id="success-card">
+      <div class="success-icon"><i class="ti ti-check"></i></div>
+      <h2 class="success-title">¡Pedido registrado!</h2>
+      <p class="success-sub">Recibimos tu solicitud correctamente. Nos comunicaremos contigo por WhatsApp en las próximas horas para confirmar disponibilidad y coordinar el envío.</p>
+      <div class="order-badge">
+        Pedido <strong id="order-id-display"></strong>
+      </div>
+      <div class="success-details" id="success-details"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 EcoMóvil · Cochabamba, Bolivia</p>
+    <p>¿Dudas? Escríbenos por <a href="https://wa.me/59170000000" target="_blank">WhatsApp</a></p>
+  </footer>
+
+  <script src="stock.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
