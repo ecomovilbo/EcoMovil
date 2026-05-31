@@ -112,7 +112,7 @@ function generateOrderId() {
 // --- ENVIAR PEDIDO ---
 // Usamos Formspree (gratis, sin cuenta de pago, llega al email).
 // Reemplaza FORMSPREE_ID con tu ID real (ver INSTRUCCIONES.md).
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/REEMPLAZA_ESTE_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjryedj';
 
 async function submitOrder(e) {
   e.preventDefault();
